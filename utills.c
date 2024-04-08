@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:42:06 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/03 16:10:37 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/08 17:01:28 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,10 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return (ft_overflowcheck(res, sign));
+}
+
+void	error_msg(void)
+{
+	printf("Error: invalid input\n");
+	exit(1);
 }
