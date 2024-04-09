@@ -6,13 +6,13 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:57:42 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/08 17:06:51 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/09 13:06:57 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_stats	*init_philo(int argc, char **args)
+t_stats	*assign_stats(int argc, char **args)
 {
 	t_stats	*philo_stats;
 
@@ -33,3 +33,71 @@ t_stats	*init_philo(int argc, char **args)
 		philo_stats->n_philo_eat = 1;
 	return (philo_stats);
 }
+
+void	assign_forks(t_philo *philo, t_fork *forks, int position)
+{
+	int		nbr_philo;
+
+	nbr_philo = philo->stats->n_philo;
+	philo->first_fork = &forks[(position + 1) % nbr_philo];
+	philo->second_fork = &forks[position];
+	if (philo->id % 2)
+	{
+		philo->first_fork = &forks[position];
+		philo->second_fork = &forks[(position + 1) % nbr_philo];
+	}
+}
+
+void	philo_init(t_stats *stats)
+{
+	int		i;
+	t_philo	*philo;
+
+	i = 0;
+	while (i < stats->n_philo)
+	{
+		philo = &stats->philos + i;
+		philo->id = i + 1;
+		philo->full = 0;
+		philo->meals = 0;
+		philo->stats = stats;
+		assign_forks(philo, stats->forks, i);
+	}
+}
+
+void	data_init(t_stats *stats)
+{
+	int	i;
+
+	i = 0;
+	stats->end_sim = 0;
+	stats->philos = ft_malloc(sizeof(t_philo) * stats->n_philo);
+	stats->forks = ft_malloc(sizeof(t_fork) * stats->n_philo);
+	while (i < stats->n_philo)
+	{
+		mutex_centre(&stats->forks[i].fork, INIT);
+		stats->forks[i].fork_id = i;
+	}
+	philo_init(stats);
+}
+
+/*pthread_t	*create_thread(t_stats *philo_stats, unsigned int philos)
+{
+	pthread_t	*philo_thread;
+	int			i;
+
+	i = 0;
+	philo_thread = (pthread_t *)malloc(sizeof(pthread_t) * philos);
+	if (!philo_thread)
+		return (NULL);
+	while (i < philos)
+	{
+		if (pthread_create(&philo_thread[i++], NULL, xx, philo_stats) != 0)
+		{
+			free(philo_thread);
+			return (NULL);
+		}
+	}
+	return (philo_thread);
+}
+*/
