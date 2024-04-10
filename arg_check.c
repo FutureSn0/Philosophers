@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:57:51 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/09 13:00:16 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/10 13:47:35 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int	digit_check(const char *str)
 	return (1);
 }
 
-void	input_check(t_stats *stats, char **av)
+void	input_check(char **av)
 {
 	int		i;
 	long	nbr;
 
-	i = 0;
+	i = 1;
 	while (av[i])
 	{
 		if (digit_check(av[i]) == 0)

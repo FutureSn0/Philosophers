@@ -6,17 +6,19 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:57:42 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/09 13:06:57 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/10 13:55:12 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_stats	*assign_stats(int argc, char **args)
+t_stats	*assign_stats(char **args)
 {
 	t_stats	*philo_stats;
 
-	philo_stats = malloc(sizeof(t_stats));
+	philo_stats = ft_malloc(sizeof(t_stats));
+	if (!philo_stats)
+		return (NULL);
 	philo_stats->n_philo = ft_atoi(args[1]);
 	philo_stats->time_to_die = ft_atoi(args[2]) * 1e3;
 	philo_stats->time_to_eat = ft_atoi(args[3]) * 1e3;
@@ -33,7 +35,7 @@ t_stats	*assign_stats(int argc, char **args)
 		philo_stats->n_philo_eat = 1;
 	return (philo_stats);
 }
-
+/*
 void	assign_forks(t_philo *philo, t_fork *forks, int position)
 {
 	int		nbr_philo;
@@ -81,7 +83,7 @@ void	data_init(t_stats *stats)
 	philo_init(stats);
 }
 
-/*pthread_t	*create_thread(t_stats *philo_stats, unsigned int philos)
+pthread_t	*create_thread(t_stats *philo_stats, unsigned int philos)
 {
 	pthread_t	*philo_thread;
 	int			i;

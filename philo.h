@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:44:18 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/09 13:05:47 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/10 13:53:56 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
 
@@ -29,6 +30,7 @@ typedef enum e_funct
 }			t_funct;
 
 typedef pthread_mutex_t	t_mtx;
+typedef struct s_stats	t_stats;
 
 typedef struct s_fork
 {
@@ -65,12 +67,12 @@ int		ft_overflowcheck(long long res, int sign);
 int		ft_atoi(const char *str);
 void	error_msg(void);
 
-void	input_check(t_stats *stats, char **av);
+void	input_check(char **av);
 
 void	*ft_malloc(size_t bytes);
 void	mutex_centre(t_mtx *mtx, t_funct funct);
 
-t_stats	*assign_stats(int argc, char **argv);
+t_stats	*assign_stats(char **argv);
 void	data_init(t_stats *stats);
 
 #endif
