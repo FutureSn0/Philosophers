@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:38:48 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/10 13:40:27 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/12 14:11:18 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*ft_malloc(size_t bytes)
 	return (arr);
 }
 
-/*void	mutex_centre(t_mtx *mtx, t_funct funct)
+void	mutex_centre(t_mtx *mtx, t_funct funct)
 {
 	if (funct == LOCK)
 		pthread_mutex_lock(mtx);
@@ -40,4 +40,6 @@ void	*ft_malloc(size_t bytes)
 		printf("enum error\n");
 		exit(1);
 	}
-}*/
+}
+
+/*void	thread_centre()*/

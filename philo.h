@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:44:18 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/10 13:53:56 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/12 14:11:19 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_philo
 {
 	unsigned int	id;
 	unsigned int	meals;
-	unsigned int	full;
+	unsigned int	full; //Flag
 	unsigned int	last_meal;
 	t_fork			*first_fork;
 	t_fork			*second_fork;
@@ -56,9 +56,11 @@ typedef struct s_stats
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
-	unsigned int	n_philo_eat;
+	int		n_philo_eat; // Temporary flag if no argument present
 	unsigned int	start_sim;
-	unsigned int	end_sim;
+	unsigned int	end_sim; //Flag
+	unsigned int	threads_ready_flag; //Flag
+	t_mtx			stats_mtx;
 	t_fork			*forks;
 	t_philo			*philos;
 }	t_stats;

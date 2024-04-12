@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:57:42 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/10 13:55:12 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/12 14:11:16 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ t_stats	*assign_stats(char **args)
 	if (args[5])
 		philo_stats->n_philo_eat = ft_atoi(args[5]);
 	else
-		philo_stats->n_philo_eat = 1;
+		philo_stats->n_philo_eat = -1;
 	return (philo_stats);
 }
-/*
+
 void	assign_forks(t_philo *philo, t_fork *forks, int position)
 {
 	int		nbr_philo;
@@ -73,7 +73,9 @@ void	data_init(t_stats *stats)
 
 	i = 0;
 	stats->end_sim = 0;
+	stats->threads_ready_flag = 0;
 	stats->philos = ft_malloc(sizeof(t_philo) * stats->n_philo);
+	mutex_centre(&stats->stats_mtx, INIT);
 	stats->forks = ft_malloc(sizeof(t_fork) * stats->n_philo);
 	while (i < stats->n_philo)
 	{
@@ -83,7 +85,7 @@ void	data_init(t_stats *stats)
 	philo_init(stats);
 }
 
-pthread_t	*create_thread(t_stats *philo_stats, unsigned int philos)
+/*pthread_t	*create_thread(t_stats *philo_stats, unsigned int philos)
 {
 	pthread_t	*philo_thread;
 	int			i;
@@ -101,5 +103,4 @@ pthread_t	*create_thread(t_stats *philo_stats, unsigned int philos)
 		}
 	}
 	return (philo_thread);
-}
-*/
+}*/

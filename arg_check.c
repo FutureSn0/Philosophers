@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:57:51 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/10 13:47:35 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/11 12:53:28 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	input_check(char **av)
 		if (digit_check(av[i]) == 0)
 			error_msg();
 		nbr = ft_atoi(av[i]);
-		if (nbr < 0)
+		if (nbr <= 0)
 			error_msg();
 		overflow_check(nbr, av, i);
 		i++;
