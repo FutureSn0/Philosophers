@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   cordination.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 12:49:00 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/15 12:01:21 by aapryce          ###   ########.fr       */
+/*   Created: 2024/04/15 11:43:43 by aapryce           #+#    #+#             */
+/*   Updated: 2024/04/15 12:01:32 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	spinlock_threads(t_stats *stats)
 {
-	t_stats	*philo_stats;
-	int		i;
-
-	i = 1;
-	if (argc == 5 || argc == 6)
-	{
-		input_check(argv);
-		philo_stats = assign_stats(argv);
-		/*philo_stats = init_philo(argc, argv);
-		dinner_start(philo_stats);
-		completion */
-	}
-	else
-		error_msg();
-	return (0);
+	while (!get_uint(&stats->stats_mtx, &stats->threads_ready_flag))       
+		;
 }

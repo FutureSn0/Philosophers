@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:42:06 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/08 17:01:28 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/15 14:16:00 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,5 @@ void	error_msg(void)
 	printf("Error: invalid input\n");
 	exit(1);
 }
+
+long	time(t_v)
