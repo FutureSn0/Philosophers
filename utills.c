@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:42:06 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/15 14:16:00 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/16 15:12:31 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,38 @@ void	error_msg(void)
 	exit(1);
 }
 
-long	time(t_v)
+long	get_time(t_time_unit time_unit)
+{
+	struct	timeval	tv;
+
+	if (time_unit == SECONDS)
+		return (tv.tv_sec + (tv.tv_usec / 1e6));
+	else if (time_unit == MILISECONDS)
+		return((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
+	else if (time_unit == MICROSECONDS)
+		return ((tv.tv_sec * 1e6) + tv.tv_usec);
+	else
+		error_msg();
+	return (0);
+}
+
+void	ft_usleep(long usec, t_stats *stats)
+{
+	long	start;
+	long	time_elapsed;
+	long	time_remaining;
+
+	start = get_time(MICROSECONDS);
+	while (get_time(MICROSECONDS) - start < usec)
+	{
+		if (end_of_sim(stats))
+			break ;
+		time_elapsed = get_time(MICROSECONDS) - start;
+		time_remaining = usec - time_elapsed;
+		if (time_remaining > 1e3)
+			usleep(time_remaining / 2);
+		else
+			while(get_time(MICROSECONDS) - start < usec)
+				;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:44:18 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/15 14:16:01 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/16 15:12:32 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+typedef enum	e_philo_state
+{
+	EATING,
+	SLEEPING,
+	THINKING,
+	TAKE_FIRST_FORK,
+	TAKE_SECOND_FORK,
+	DEAD,
+}	t_philo_state;
+
 typedef enum e_funct
 {
 	LOCK,
@@ -28,6 +38,13 @@ typedef enum e_funct
 	JOIN,
 	DETACH,
 }			t_funct;
+
+typedef enum	e_time_unit
+{
+	SECONDS,
+	MILISECONDS,
+	MICROSECONDS,
+}	t_time_unit;
 
 typedef pthread_mutex_t	t_mtx;
 typedef struct s_stats	t_stats;
@@ -61,6 +78,7 @@ typedef struct s_stats
 	unsigned int	end_sim; //Flag
 	unsigned int	threads_ready_flag; //Flag
 	t_mtx			stats_mtx;
+	t_mtx			write_mtx;
 	t_fork			*forks;
 	t_philo			*philos;
 }	t_stats;
@@ -69,6 +87,8 @@ typedef struct s_stats
 int		ft_overflowcheck(long long res, int sign);
 int		ft_atoi(const char *str);
 void	error_msg(void);
+long	get_time(t_time_unit time_unit);
+void	ft_usleep(long usec, t_stats *stats);
 
 /*ARG_CHECK*/
 void	input_check(char **av);
@@ -90,7 +110,7 @@ void	set_uint(t_mtx *mtx, unsigned int *dest, unsigned int value);
 unsigned int	get_uint(t_mtx *mtx, unsigned int *value);
 void	set_int(t_mtx *mtx, int *dest, int value);
 unsigned int	get_int(t_mtx *mtx, unsigned *value);
-unsigned int	end_sim(t_stats *stats);
+unsigned int	end_of_sim(t_stats *stats);
 
 /*CORDINATION*/
 void	spinlock_threads(t_stats *stats);

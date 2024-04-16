@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:13:30 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/12 13:50:56 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/16 13:34:04 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ unsigned int	get_int(t_mtx *mtx, unsigned *value)
 		return (res);
 }
 
-unsigned int	end_sim(t_stats *stats)
+unsigned int	end_of_sim(t_stats *stats)
 {
 	return (get_uint(&stats->stats_mtx, &stats->end_sim));
 }
