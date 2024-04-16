@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:54:20 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/16 15:12:30 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/16 15:15:41 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	write_current_status(t_philo_state state, t_philo *philo)
 		mutex_centre(&philo->stats->write_mtx, LOCK);
 		if (state == TAKE_FIRST_FORK || state == TAKE_SECOND_FORK
 		&& !end_of_sim(philo->stats))
-			printf("%ld\t %d has taken a fork\n", philo->id);
+			printf("%ld\t %d has taken a fork\n", time_elapsed, philo->id);
 		if (state == EATING && !end_of_sim(philo->stats))
-			printf("%ld \t %d is eating", philo->id);
+			printf("%ld \t %d is eating\n", time_elapsed, philo->id);
 
 }
