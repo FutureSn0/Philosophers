@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:57:42 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/16 15:00:48 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/17 15:12:35 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,25 @@ void	assign_forks(t_philo *philo, t_fork *forks, int position)
 
 void	philo_init(t_stats *stats)
 {
-	int		i;
+	unsigned int		i;
 	t_philo	*philo;
 
 	i = 0;
 	while (i < stats->n_philo)
 	{
-		philo = &stats->philos + i;
+		philo = stats->philos + i;
 		philo->id = i + 1;
 		philo->full = 0;
 		philo->meals = 0;
 		philo->stats = stats;
+		mutex_centre(&philo->philo_mtx, INIT);
 		assign_forks(philo, stats->forks, i);
 	}
 }
 
 void	data_init(t_stats *stats)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	stats->end_sim = 0;

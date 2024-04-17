@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:13:30 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/16 13:34:04 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/17 15:25:36 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	set_uint(t_mtx *mtx, unsigned int *dest, unsigned int value)
 
 unsigned int    get_uint(t_mtx *mtx, unsigned int *value)
 {
-		unsigned int    *res;
+		unsigned int    res;
 
 		mutex_centre(mtx, LOCK);
 		res = *value;
@@ -38,7 +38,7 @@ void	set_int(t_mtx *mtx, int *dest, int value)
 
 unsigned int	get_int(t_mtx *mtx, unsigned *value)
 {
-		int    *res;
+		int    res;
 
 		mutex_centre(mtx, LOCK);
 		res = *value;

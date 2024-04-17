@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:44:18 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/16 15:12:32 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/17 15:49:17 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_H
 
 # include <stdlib.h>
+# include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
@@ -51,19 +52,20 @@ typedef struct s_stats	t_stats;
 
 typedef struct s_fork
 {
-	t_mtx	*fork;
+	t_mtx	fork;
 	int		fork_id;
 }	t_fork;
 
 typedef struct s_philo
 {
-	unsigned int	id;
-	unsigned int	meals;
+	unsigned int	id; //ID of philo
+	unsigned int	meals; // Amount of meals eaten
 	unsigned int	full; //Flag
-	unsigned int	last_meal;
-	t_fork			*first_fork;
+	unsigned int	last_meal; // tile elapsed since last meal
+	t_fork			*first_fork; 
 	t_fork			*second_fork;
 	pthread_t		thread_id;
+	t_mtx			philo_mtx;
 	t_stats			*stats;
 }	t_philo;
 
@@ -96,6 +98,7 @@ void	input_check(char **av);
 /*THREAD_MUTEX_INIT*/
 void	*ft_malloc(size_t bytes);
 void	mutex_centre(t_mtx *mtx, t_funct funct);
+void	thread_centre(pthread_t *thread, void *(*start_routine) (void *), void *arg, t_funct funct);
 
 /*DATA_INIT*/
 t_stats	*assign_stats(char **argv);
@@ -114,4 +117,9 @@ unsigned int	end_of_sim(t_stats *stats);
 
 /*CORDINATION*/
 void	spinlock_threads(t_stats *stats);
+
+/*STATUS*/
+void	thinking(t_philo *philo);
+void	eat(t_philo *philo);
+void	write_current_status(t_philo_state state, t_philo *philo);
 #endif

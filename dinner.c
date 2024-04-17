@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 09:59:19 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/16 15:12:29 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/17 15:19:39 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,24 @@ void    *dinner_sim(void *info)
         spinlock_threads(philo->stats);
 	while (!end_of_sim(philo->stats))
 	{
-		
+		if(philo->full)
+			break ;
+		eat(philo);
+		write_current_status(SLEEPING, philo);
+		ft_usleep(philo->stats->time_to_sleep, philo->stats);
 	}
+	return (NULL);
 }
 
 void    dinner(t_stats *stats)
 {
-        int     i;
+        unsigned int     i;
         
         i = 0;
 	if (stats->n_philo_eat == 0)
 		return ;
-	else if (stats->n_philo == 1)
-		/*ad_hoc*/
+	/*else if (stats->n_philo == 1)
+		ad_hoc*/
 	else
 		while (i < stats->n_philo)
 		{

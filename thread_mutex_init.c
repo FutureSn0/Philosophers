@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:38:48 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/15 11:53:59 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/17 15:45:25 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	thread_centre(pthread_t *thread, void *(*start_routine) (void *), void *arg
 	if (funct == CREATE)
 		pthread_create(thread, NULL, start_routine, arg);
 	else if (funct == JOIN)
-		pthread_join(thread, NULL);
+		pthread_join(*thread, NULL);
 	else if (funct == DETACH)
-		pthread_detach(thread);
+		pthread_detach(*thread);
 	else
 	{
 		printf("enum error\n");

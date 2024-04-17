@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:49:00 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/16 15:12:28 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/17 13:53:36 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ int	main(int argc, char **argv)
 	{
 		input_check(argv);
 		philo_stats = assign_stats(argv);
-		/*philo_stats = init_philo(argc, argv);
-		dinner_start(philo_stats);
-		completion */
+		dinner(philo_stats);
+		/*completion*/
 	}
 	else
 		error_msg();
