@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:38:48 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/17 15:45:25 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/17 16:06:23 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	mutex_centre(t_mtx *mtx, t_funct funct)
 	}
 }
 
-void	thread_centre(pthread_t *thread, void *(*start_routine) (void *), void *arg, t_funct funct)
+void	thread_centre(pthread_t *thread, void *(*start_routine)(void *), void *arg, t_funct funct)
 {
 	if (funct == CREATE)
 		pthread_create(thread, NULL, start_routine, arg);

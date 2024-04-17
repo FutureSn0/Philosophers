@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:57:42 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/17 15:12:35 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/17 16:10:16 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,10 @@ void	data_init(t_stats *stats)
 	stats->end_sim = 0;
 	stats->threads_ready_flag = 0;
 	stats->philos = ft_malloc(sizeof(t_philo) * stats->n_philo);
+	stats->forks = ft_malloc(sizeof(t_fork) * stats->n_philo);
 	mutex_centre(&stats->stats_mtx, INIT);
 	mutex_centre(&stats->write_mtx, INIT);
-	stats->forks = ft_malloc(sizeof(t_fork) * stats->n_philo);
+
 	while (i < stats->n_philo)
 	{
 		mutex_centre(&stats->forks[i].fork, INIT);
