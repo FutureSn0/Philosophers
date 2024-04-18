@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:44:18 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/17 15:49:17 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/18 12:04:20 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ typedef struct s_stats
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
-	int		n_philo_eat; // Temporary flag if no argument present
+	int		n_philo_eat; // Minimum meals eaten to stop sim. Temporary flag if no argument present
 	unsigned int	start_sim;
 	unsigned int	end_sim; //Flag
 	unsigned int	threads_ready_flag; //Flag
-	t_mtx			stats_mtx;
-	t_mtx			write_mtx;
+	t_mtx			stats_mtx; // Mutex for set and get
+	t_mtx			write_mtx; // Mutex to write thread info 
 	t_fork			*forks;
 	t_philo			*philos;
 }	t_stats;

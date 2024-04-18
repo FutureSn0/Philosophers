@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:42:06 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/17 12:14:51 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/18 12:18:30 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ long	get_time(t_time_unit time_unit)
 {
 	struct	timeval	tv;
 
+	gettimeofday(&tv, NULL);
 	if (time_unit == SECONDS)
 		return (tv.tv_sec + (tv.tv_usec / 1e6));
 	else if (time_unit == MILISECONDS)
@@ -68,6 +69,10 @@ long	get_time(t_time_unit time_unit)
 		error_msg();
 	return (0);
 }
+
+/* Custom usleep cosistenly checks if sleep time has passed and if
+the simulation has ended breaking loop if true. This makes it more percise,
+but more CPU intense than reglar usleep */
 
 void	ft_usleep(long usec, t_stats *stats)
 {
