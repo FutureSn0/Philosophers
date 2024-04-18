@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:54:20 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/17 15:42:52 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/18 16:55:13 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ void	eat(t_philo *philo)
 	write_current_status(TAKE_FIRST_FORK, philo);
 	mutex_centre(&philo->second_fork->fork, LOCK);
 	write_current_status(TAKE_SECOND_FORK, philo);
-
 	set_uint(&philo->philo_mtx, &philo->last_meal, get_time(MILISECONDS));
 	philo->meals++;
 	write_current_status(EATING, philo);
 	ft_usleep(philo->stats->time_to_eat, philo->stats);
 	if (philo->stats->n_philo_eat < 0
 		|| philo->meals == (unsigned int)philo->stats->n_philo_eat)
-			set_uint(&philo->philo_mtx, &philo->full, 1);
+		set_uint(&philo->philo_mtx, &philo->full, 1);
 	mutex_centre(&philo->first_fork->fork, UNLOCK);
 	mutex_centre(&philo->second_fork->fork, UNLOCK);
 }

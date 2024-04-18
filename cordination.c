@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:43:43 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/16 11:55:29 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/18 16:36:34 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	spinlock_threads(t_stats *stats)
 {
-	while (!get_uint(&stats->stats_mtx, &stats->threads_ready_flag))       
+	while (!get_uint(&stats->stats_mtx, &stats->threads_ready_flag))
 		;
 }

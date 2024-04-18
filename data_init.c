@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:57:42 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/17 16:12:16 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/18 16:23:30 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	assign_forks(t_philo *philo, t_fork *forks, int position)
 void	philo_init(t_stats *stats)
 {
 	unsigned int		i;
-	t_philo	*philo;
+	t_philo				*philo;
 
 	i = 0;
 	while (i < stats->n_philo)
@@ -65,6 +65,7 @@ void	philo_init(t_stats *stats)
 		philo->stats = stats;
 		mutex_centre(&philo->philo_mtx, INIT);
 		assign_forks(philo, stats->forks, i);
+		i++;
 	}
 }
 
@@ -79,31 +80,11 @@ void	data_init(t_stats *stats)
 	stats->forks = ft_malloc(sizeof(t_fork) * stats->n_philo);
 	mutex_centre(&stats->stats_mtx, INIT);
 	mutex_centre(&stats->write_mtx, INIT);
-
 	while (i < stats->n_philo)
 	{
 		mutex_centre(&stats->forks[i].fork, INIT);
 		stats->forks[i].fork_id = i;
+		i++;
 	}
 	philo_init(stats);
 }
-
-/*pthread_t	*create_thread(t_stats *philo_stats, unsigned int philos)
-{
-	pthread_t	*philo_thread;
-	int			i;
-
-	i = 0;
-	philo_thread = (pthread_t *)malloc(sizeof(pthread_t) * philos);
-	if (!philo_thread)
-		return (NULL);
-	while (i < philos)
-	{
-		if (pthread_create(&philo_thread[i++], NULL, xx, philo_stats) != 0)
-		{
-			free(philo_thread);
-			return (NULL);
-		}
-	}
-	return (philo_thread);
-}*/

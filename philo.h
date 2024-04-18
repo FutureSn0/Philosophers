@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:44:18 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/18 12:04:20 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/18 17:05:46 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef enum	e_philo_state
+typedef enum e_philo_state
 {
 	EATING,
 	SLEEPING,
@@ -40,7 +40,7 @@ typedef enum e_funct
 	DETACH,
 }			t_funct;
 
-typedef enum	e_time_unit
+typedef enum e_time_unit
 {
 	SECONDS,
 	MILISECONDS,
@@ -62,7 +62,7 @@ typedef struct s_philo
 	unsigned int	meals; // Amount of meals eaten
 	unsigned int	full; //Flag
 	unsigned int	last_meal; // tile elapsed since last meal
-	t_fork			*first_fork; 
+	t_fork			*first_fork;
 	t_fork			*second_fork;
 	pthread_t		thread_id;
 	t_mtx			philo_mtx;
@@ -75,7 +75,7 @@ typedef struct s_stats
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
-	int		n_philo_eat; // Minimum meals eaten to stop sim. Temporary flag if no argument present
+	int				n_philo_eat;
 	unsigned int	start_sim;
 	unsigned int	end_sim; //Flag
 	unsigned int	threads_ready_flag; //Flag
@@ -98,7 +98,8 @@ void	input_check(char **av);
 /*THREAD_MUTEX_INIT*/
 void	*ft_malloc(size_t bytes);
 void	mutex_centre(t_mtx *mtx, t_funct funct);
-void	thread_centre(pthread_t *thread, void *(*start_routine) (void *), void *arg, t_funct funct);
+void	thread_centre(pthread_t *thread, void *(*start_routine) (void *),
+			void *arg, t_funct funct);
 
 /*DATA_INIT*/
 t_stats	*assign_stats(char **argv);
@@ -112,7 +113,7 @@ void	dinner(t_stats *stats);
 void	set_uint(t_mtx *mtx, unsigned int *dest, unsigned int value);
 unsigned int	get_uint(t_mtx *mtx, unsigned int *value);
 void	set_int(t_mtx *mtx, int *dest, int value);
-unsigned int	get_int(t_mtx *mtx, unsigned *value);
+int		get_int(t_mtx *mtx, int *value);
 unsigned int	end_of_sim(t_stats *stats);
 
 /*CORDINATION*/

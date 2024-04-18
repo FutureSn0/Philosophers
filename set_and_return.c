@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:13:30 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/17 15:25:36 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/18 16:31:46 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,36 @@
 
 void	set_uint(t_mtx *mtx, unsigned int *dest, unsigned int value)
 {
-		mutex_centre(mtx, LOCK);
-		*dest = value;
-		mutex_centre(mtx, UNLOCK);
+	mutex_centre(mtx, LOCK);
+	*dest = value;
+	mutex_centre(mtx, UNLOCK);
 }
 
-unsigned int    get_uint(t_mtx *mtx, unsigned int *value)
+unsigned int	get_uint(t_mtx *mtx, unsigned int *value)
 {
-		unsigned int    res;
+	unsigned int	res;
 
-		mutex_centre(mtx, LOCK);
-		res = *value;
-		mutex_centre(mtx, UNLOCK);
-		return (res);
+	mutex_centre(mtx, LOCK);
+	res = *value;
+	mutex_centre(mtx, UNLOCK);
+	return (res);
 }
 
 void	set_int(t_mtx *mtx, int *dest, int value)
 {
-		mutex_centre(mtx, LOCK);
-		*dest = value;
-		mutex_centre(mtx, UNLOCK);
+	mutex_centre(mtx, LOCK);
+	*dest = value;
+	mutex_centre(mtx, UNLOCK);
 }
 
-unsigned int	get_int(t_mtx *mtx, unsigned *value)
+int	get_int(t_mtx *mtx, int *value)
 {
-		int    res;
+	int	res;
 
-		mutex_centre(mtx, LOCK);
-		res = *value;
-		mutex_centre(mtx, UNLOCK);
-		return (res);
+	mutex_centre(mtx, LOCK);
+	res = *value;
+	mutex_centre(mtx, UNLOCK);
+	return (res);
 }
 
 unsigned int	end_of_sim(t_stats *stats)

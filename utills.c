@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:42:06 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/18 12:18:30 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/18 16:38:13 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	error_msg(void)
 
 long	get_time(t_time_unit time_unit)
 {
-	struct	timeval	tv;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	if (time_unit == SECONDS)
 		return (tv.tv_sec + (tv.tv_usec / 1e6));
 	else if (time_unit == MILISECONDS)
-		return((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
+		return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
 	else if (time_unit == MICROSECONDS)
 		return ((tv.tv_sec * 1e6) + tv.tv_usec);
 	else
@@ -90,7 +90,7 @@ void	ft_usleep(long usec, t_stats *stats)
 		if (time_remaining > 1e3)
 			usleep(time_remaining / 2);
 		else
-			while(get_time(MICROSECONDS) - start < usec)
+			while (get_time(MICROSECONDS) - start < usec)
 				;
 	}
 }
