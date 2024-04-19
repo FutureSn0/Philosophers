@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:57:51 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/15 12:01:28 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/19 11:50:41 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_isdigit(int c)
 
 void	overflow_check(int nbr, char **av, int i)
 {
-	if ((nbr > 0 && av[i][0] == '-') || (nbr < 0 && av[i][0] != '-'))
+	if (nbr < 0 && av[i][0] != '-')
 		error_msg();
 }
 
