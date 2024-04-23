@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:57:42 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/18 16:23:30 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/23 16:05:14 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	assign_forks(t_philo *philo, t_fork *forks, int position)
 	nbr_philo = philo->stats->n_philo;
 	philo->first_fork = &forks[(position + 1) % nbr_philo];
 	philo->second_fork = &forks[position];
-	if (philo->id % 2)
+	if (philo->id % 2 == 0)
 	{
 		philo->first_fork = &forks[position];
 		philo->second_fork = &forks[(position + 1) % nbr_philo];
@@ -62,8 +62,8 @@ void	philo_init(t_stats *stats)
 		philo->id = i + 1;
 		philo->full = 0;
 		philo->meals = 0;
-		philo->stats = stats;
 		mutex_centre(&philo->philo_mtx, INIT);
+		philo->stats = stats;
 		assign_forks(philo, stats->forks, i);
 		i++;
 	}
@@ -76,6 +76,7 @@ void	data_init(t_stats *stats)
 	i = 0;
 	stats->end_sim = 0;
 	stats->threads_ready_flag = 0;
+	stats->total_threads = 0;
 	stats->philos = ft_malloc(sizeof(t_philo) * stats->n_philo);
 	stats->forks = ft_malloc(sizeof(t_fork) * stats->n_philo);
 	mutex_centre(&stats->stats_mtx, INIT);

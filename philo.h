@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:44:18 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/18 17:05:46 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/23 14:53:50 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct s_stats
 	unsigned int	start_sim;
 	unsigned int	end_sim; //Flag
 	unsigned int	threads_ready_flag; //Flag
+	unsigned int	total_threads;
+	pthread_t	monitor;
 	t_mtx			stats_mtx; // Mutex for set and get
 	t_mtx			write_mtx; // Mutex to write thread info 
 	t_fork			*forks;
@@ -108,6 +110,8 @@ void	data_init(t_stats *stats);
 /* DINNER */
 void	*dinner_sim(void *info);
 void	dinner(t_stats *stats);
+void	*monitor_sim(void *info);
+void	*one_philo(void *arg);
 
 /* SET_AND_RETURN */
 void	set_uint(t_mtx *mtx, unsigned int *dest, unsigned int value);
@@ -118,6 +122,9 @@ unsigned int	end_of_sim(t_stats *stats);
 
 /*CORDINATION*/
 void	spinlock_threads(t_stats *stats);
+void	thread_counter(t_mtx *mtx, unsigned int *value);
+unsigned int	running_threads(t_mtx *mtx, unsigned int *threads, unsigned int n_philo);
+unsigned int	philo_died(t_philo *philo);
 
 /*STATUS*/
 void	thinking(t_philo *philo);

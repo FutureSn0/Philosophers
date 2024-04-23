@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:54:20 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/18 16:55:13 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/23 15:50:59 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	write_current_status(t_philo_state state, t_philo *philo)
 	long	time_elapsed;
 
 	time_elapsed = get_time(MILISECONDS) - philo->stats->start_sim;
-	if (philo->full)
+	if (get_uint(&philo->philo_mtx, &philo->full))
 		return ;
 	mutex_centre(&philo->stats->write_mtx, LOCK);
 	if ((state == TAKE_FIRST_FORK || state == TAKE_SECOND_FORK)
