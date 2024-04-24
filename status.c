@@ -6,15 +6,29 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:54:20 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/23 15:50:59 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/24 15:16:18 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	thinking(t_philo *philo)
+void	thinking(t_philo *philo, unsigned int sim_start)
 {
-	write_current_status(THINKING, philo);
+	unsigned int	time_to_eat;
+	unsigned int	time_to_sleep;
+	unsigned int	time_to_think;
+	
+	if (!sim_start)
+		write_current_status(THINKING, philo);
+	if (philo->stats->n_philo % 2 == 0)
+		return ;
+	time_to_eat = philo->stats->time_to_eat;
+	time_to_sleep = philo->stats->time_to_sleep;
+	if (time_to_sleep > time_to_eat * 2)
+		time_to_think = 0;
+	else
+		time_to_think = time_to_eat * 2 - time_to_sleep;
+	ft_usleep(time_to_think * 0.42, philo->stats);
 }
 
 void	eat(t_philo *philo)

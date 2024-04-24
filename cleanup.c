@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_and_return.c                                   :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 11:13:30 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/24 11:30:21 by aapryce          ###   ########.fr       */
+/*   Created: 2024/04/24 10:52:48 by aapryce           #+#    #+#             */
+/*   Updated: 2024/04/24 11:17:58 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	set_uint(t_mtx *mtx, unsigned int *dest, unsigned int value)
+void	cleanup(t_stats *stats)
 {
-	mutex_centre(mtx, LOCK);
-	*dest = value;
-	mutex_centre(mtx, UNLOCK);
-}
+	t_philo *philo;
+	unsigned int     i;
 
-unsigned int	get_uint(t_mtx *mtx, unsigned int *value)
-{
-	unsigned int	res;
-
-	mutex_centre(mtx, LOCK);
-	res = *value;
-	mutex_centre(mtx, UNLOCK);
-	return (res);
-}
-
-unsigned int	end_of_sim(t_stats *stats)
-{
-	return (get_uint(&stats->stats_mtx, &stats->end_sim));
+	i = 0;
+	while (i < stats->n_philo)
+	{
+		philo = stats->philos + i;
+		mutex_centre(&philo->philo_mtx, DESTROY);
+		i++;
+	}
+	mutex_centre(&stats->stats_mtx, DESTROY);
+	mutex_centre(&stats->write_mtx, DESTROY);
+	free(stats->forks);
+	free(stats->philos);
 }

@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:43:43 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/23 14:53:49 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/24 15:02:28 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,18 @@ unsigned int	philo_died(t_philo *philo)
 	if (elapsed > time_to_die)
 		return (1);
 	return (0);
+}
+
+void	philo_desync(t_philo *philo)
+{
+	if (philo->stats->n_philo % 2 == 0)
+	{
+		if (philo->id % 2 == 0)
+			ft_usleep(3e4, philo->stats);
+	}
+	else
+	{
+		if (philo->id % 2)
+			thinking(philo, 1);
+	}
 }

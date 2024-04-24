@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:44:18 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/23 14:53:50 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/24 14:54:33 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,6 @@ void	*one_philo(void *arg);
 /* SET_AND_RETURN */
 void	set_uint(t_mtx *mtx, unsigned int *dest, unsigned int value);
 unsigned int	get_uint(t_mtx *mtx, unsigned int *value);
-void	set_int(t_mtx *mtx, int *dest, int value);
-int		get_int(t_mtx *mtx, int *value);
 unsigned int	end_of_sim(t_stats *stats);
 
 /*CORDINATION*/
@@ -125,9 +123,13 @@ void	spinlock_threads(t_stats *stats);
 void	thread_counter(t_mtx *mtx, unsigned int *value);
 unsigned int	running_threads(t_mtx *mtx, unsigned int *threads, unsigned int n_philo);
 unsigned int	philo_died(t_philo *philo);
+void	philo_desync(t_philo *philo);
 
 /*STATUS*/
-void	thinking(t_philo *philo);
+void	thinking(t_philo *philo, unsigned int sim_start);
 void	eat(t_philo *philo);
 void	write_current_status(t_philo_state state, t_philo *philo);
+
+/*CLEANUP*/
+void	cleanup(t_stats *stats);
 #endif

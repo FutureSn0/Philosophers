@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 09:59:19 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/23 15:56:20 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/24 14:56:51 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	*dinner_sim(void *info)
 	spinlock_threads(philo->stats);
 	set_uint(&philo->philo_mtx, &philo->last_meal, get_time(MILISECONDS));
 	thread_counter(&philo->stats->stats_mtx, &philo->stats->total_threads);
+	philo_desync(philo);
 	while (!end_of_sim(philo->stats))
 	{
 		if (get_uint(&philo->philo_mtx, &philo->full))
@@ -65,7 +66,7 @@ void	*dinner_sim(void *info)
 		eat(philo);
 		write_current_status(SLEEPING, philo);
 		ft_usleep(philo->stats->time_to_sleep, philo->stats);
-		thinking(philo);
+		thinking(philo, 0);
 	}
 	return (NULL);
 }

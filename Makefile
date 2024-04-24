@@ -13,6 +13,7 @@ SRCS = philo.c \
 	status.c \
 	thread_mutex_init.c \
 	utills.c \
+	cleanup.c \
 
 OBJ = $(SRCS:.c=.o)
 
