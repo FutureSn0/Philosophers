@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:42:06 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/24 13:50:38 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/25 14:13:53 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,12 @@ void	error_msg(void)
 	exit(1);
 }
 
-long	get_time(t_time_unit time_unit)
+unsigned int	get_time(t_time_unit time_unit)
 {
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	if (time_unit == SECONDS)
-		return (tv.tv_sec + (tv.tv_usec / 1e6));
-	else if (time_unit == MILISECONDS)
+	if (time_unit == MILISECONDS)
 		return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
 	else if (time_unit == MICROSECONDS)
 		return ((tv.tv_sec * 1e6) + tv.tv_usec);
@@ -76,9 +74,9 @@ but more CPU intense than reglar usleep */
 
 void	ft_usleep(long usec, t_stats *stats)
 {
-	long	start;
-	long	time_elapsed;
-	long	time_remaining;
+	unsigned int	start;
+	unsigned int	time_elapsed;
+	unsigned int	time_remaining;
 
 	start = get_time(MICROSECONDS);
 	while (get_time(MICROSECONDS) - start < usec)

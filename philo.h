@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:44:18 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/24 14:54:33 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/25 14:12:16 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
+
+# define RESET "\033[0m"
+# define RED "\033[31m"
+# define GREEN "\033[32m"
 
 typedef enum e_philo_state
 {
@@ -42,7 +46,6 @@ typedef enum e_funct
 
 typedef enum e_time_unit
 {
-	SECONDS,
 	MILISECONDS,
 	MICROSECONDS,
 }	t_time_unit;
@@ -91,7 +94,7 @@ typedef struct s_stats
 int		ft_overflowcheck(long long res, int sign);
 int		ft_atoi(const char *str);
 void	error_msg(void);
-long	get_time(t_time_unit time_unit);
+unsigned int	get_time(t_time_unit time_unit);
 void	ft_usleep(long usec, t_stats *stats);
 
 /*ARG_CHECK*/
