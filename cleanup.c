@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:52:48 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/24 11:17:58 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/26 12:56:49 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	cleanup(t_stats *stats)
 {
-	t_philo *philo;
-	unsigned int     i;
+	t_philo			*philo;
+	unsigned int	i;
 
 	i = 0;
 	while (i < stats->n_philo)

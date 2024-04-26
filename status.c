@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:54:20 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/25 13:13:51 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/26 12:52:43 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	thinking(t_philo *philo, unsigned int sim_start)
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
 	unsigned int	time_to_think;
-	
+
 	if (!sim_start)
 		write_current_status(THINKING, philo);
 	if (philo->stats->n_philo % 2 == 0)
@@ -60,7 +60,8 @@ void	write_current_status(t_philo_state state, t_philo *philo)
 		&& !end_of_sim(philo->stats))
 		printf("%ld\t %d has taken a fork\n", time_elapsed, philo->id);
 	else if (state == EATING && !end_of_sim(philo->stats))
-		printf("%ld \t " GREEN "%d is eating..." RESET "\n", time_elapsed, philo->id);
+		printf("%ld \t " GREEN "%d is eating..."
+			RESET "\n", time_elapsed, philo->id);
 	else if (state == SLEEPING && !end_of_sim(philo->stats))
 		printf("%ld \t %d is sleeping...\n", time_elapsed, philo->id);
 	else if (state == THINKING && !end_of_sim(philo->stats))

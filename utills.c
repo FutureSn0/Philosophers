@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:42:06 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/25 14:13:53 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/26 13:08:35 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,7 @@ unsigned int	get_time(t_time_unit time_unit)
 	return (0);
 }
 
-/* Custom usleep cosistenly checks if sleep time has passed and if
-the simulation has ended breaking loop if true. This makes it more percise,
-but more CPU intense than reglar usleep */
-
-void	ft_usleep(long usec, t_stats *stats)
+void	ft_usleep(unsigned int usec, t_stats *stats)
 {
 	unsigned int	start;
 	unsigned int	time_elapsed;

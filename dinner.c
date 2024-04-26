@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 09:59:19 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/25 14:17:13 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/26 14:57:02 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ void	*one_philo(void *arg)
 
 void	*monitor_sim(void *info)
 {
-	t_stats	*stats;
-	unsigned int i;
+	t_stats			*stats;
+	unsigned int	i;
 
 	stats = (t_stats *)info;
-	while (!running_threads(&stats->stats_mtx, &stats->total_threads, stats->n_philo))
+	while (!running_threads(&stats->stats_mtx, &stats->total_threads,
+			stats->n_philo))
 		;
 	while (!end_of_sim(stats))
 	{
@@ -75,27 +76,22 @@ void	dinner(t_stats *stats)
 {
 	unsigned int	i;
 
-	i = 0;
+	i = -1;
 	if (stats->n_philo_eat == 0)
 		return ;
 	else if (stats->n_philo == 1)
-		thread_centre(&stats->philos[0].thread_id, one_philo, &stats->philos[0], CREATE);
+		thread_centre(&stats->philos[0].thread_id, one_philo,
+			&stats->philos[0], CREATE);
 	else
-		while (i < stats->n_philo)
-		{
+		while (++i < stats->n_philo)
 			thread_centre(&stats->philos[i].thread_id, dinner_sim,
 				&stats->philos[i], CREATE);
-			i++;
-		}
 	thread_centre(&stats->monitor, monitor_sim, stats, CREATE);
 	stats->start_sim = get_time(MILISECONDS);
 	set_uint(&stats->stats_mtx, &stats->threads_ready_flag, 1);
 	i = 0;
 	while (i < stats->n_philo)
-	{
-		thread_centre(&stats->philos[i].thread_id, NULL, NULL, JOIN);
-		i++;
-	}
+		thread_centre(&stats->philos[i++].thread_id, NULL, NULL, JOIN);
 	set_uint(&stats->stats_mtx, &stats->end_sim, 1);
 	thread_centre(&stats->monitor, NULL, NULL, JOIN);
 }

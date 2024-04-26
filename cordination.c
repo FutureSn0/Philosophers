@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:43:43 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/25 14:09:12 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/26 12:51:31 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	spinlock_threads(t_stats *stats)
 
 void	thread_counter(t_mtx *mtx, unsigned int *value)
 {
-	mutex_centre(mtx ,LOCK);
+	mutex_centre(mtx, LOCK);
 	(*value)++;
-	mutex_centre(mtx ,UNLOCK);
+	mutex_centre(mtx, UNLOCK);
 }
 
-unsigned int	running_threads(t_mtx *mtx, unsigned int *threads, unsigned int n_philo)
+unsigned int	running_threads(t_mtx *mtx, unsigned int *threads,
+			unsigned int n_philo)
 {
 	unsigned int	ready;
 
@@ -39,12 +40,13 @@ unsigned int	running_threads(t_mtx *mtx, unsigned int *threads, unsigned int n_p
 
 unsigned int	philo_died(t_philo *philo)
 {
-	long		elapsed;
+	unsigned int	elapsed;
 	unsigned int	time_to_die;
 
 	if (get_uint(&philo->philo_mtx, &philo->full))
 		return (0);
-	elapsed = get_time(MILISECONDS) - get_uint(&philo->philo_mtx, &philo->last_meal);
+	elapsed = get_time(MILISECONDS) - get_uint(&philo->philo_mtx,
+			&philo->last_meal);
 	time_to_die = philo->stats->time_to_die / 1e3;
 	if (elapsed > time_to_die)
 		return (1);
