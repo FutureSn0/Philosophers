@@ -1,7 +1,7 @@
 NAME = philo
 
 CC = cc
-CFLAGS = -Wextra -Wall -Werror -pthread
+CFLAGS = -Wextra -Wall -Werror -pthread -fsanitize=address -g
 RM = rm -f
 
 SRCS = philo.c \

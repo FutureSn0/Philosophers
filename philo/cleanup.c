@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:52:48 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/26 12:56:49 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/26 16:13:19 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void	cleanup(t_stats *stats)
 	mutex_centre(&stats->write_mtx, DESTROY);
 	free(stats->forks);
 	free(stats->philos);
+	free(stats);
 }
