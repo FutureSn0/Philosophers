@@ -6,7 +6,7 @@
 /*   By: aapryce <aapryce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:54:20 by aapryce           #+#    #+#             */
-/*   Updated: 2024/04/26 12:52:43 by aapryce          ###   ########.fr       */
+/*   Updated: 2024/04/26 15:23:20 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	write_current_status(t_philo_state state, t_philo *philo)
 		printf("%ld \t %d is sleeping...\n", time_elapsed, philo->id);
 	else if (state == THINKING && !end_of_sim(philo->stats))
 		printf("%ld \t %d is thinking...\n", time_elapsed, philo->id);
-	else if (state == DEAD && !end_of_sim(philo->stats))
+	else if (state == DEAD)
 		printf("%ld \t " RED "%d is dead" RESET "\n", time_elapsed, philo->id);
 	mutex_centre(&philo->stats->write_mtx, UNLOCK);
 }
